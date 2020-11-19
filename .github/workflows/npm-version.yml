@@ -45,8 +45,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with: 
-        tag_name: v${{ steps.get-package-version.current_version }}
-        release_name: Release v${{ steps.get-package-version.current_vers }}
+        tag_name: v${{ steps.get-package-version.outputs.current_version }}
+        release_name: Release v${{ steps.get-package-version.outputs.current_version }}
         body: |
           Hello World
           - This is a test
