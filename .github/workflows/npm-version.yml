@@ -39,17 +39,16 @@ jobs:
     - name: Get New Package Version
       id: get-package-version
       uses: martinbeentjes/npm-get-version-action@master
-    - run: echo "v${{ steps.get-package-version.outputs.current-version }}"
-#     - name: Generate GitHub Release
-#       uses: actions/create-release@v1
-#       id: create_release
-#       env:
-#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#       with: 
-#         tag_name: v${{ steps.get-package-version.outputs.current_version }}
-#         release_name: Release v${{ steps.get-package-version.outputs.current_version }}
-#         body: |
-#           Hello World
-#           - This is a test
-#         draft: true
-#         prerelease: false
+    - name: Generate GitHub Release
+      uses: actions/create-release@v1
+      id: create_release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with: 
+        tag_name: v${{ steps.get-package-version.outputs.current-version }}
+        release_name: Release v${{ steps.get-package-version.outputs.current-version }}
+        body: |
+          Hello World
+          - This is a test
+        draft: true
+        prerelease: false
