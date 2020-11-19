@@ -1,0 +1,38 @@
+name: Version and Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      newversion:
+        description: 'Semantic Version Bump Type (major minor patch)'
+        required: true
+
+env:
+  node_version: 14
+
+jobs:
+  version_and_release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2.3.2
+      with:
+        # fetch full history so things like auto-changelog work properly
+        fetch-depth: 0
+    - name: Use Node.js 14
+      uses: actions/setup-node@v2.1.1
+      with:
+        node-version: "14.15"
+        # setting a registry enables the NODE_AUTH_TOKEN env variable where we can set an npm token.  REQUIRED
+        registry-url: 'https://registry.npmjs.org'
+    - run: npm i
+    - run: npm test --if-present
+    - name: Version and Publish to npm
+      uses: bcomnes/npm-bump@v1.0.4
+      with:
+        git_email: zhiquan.yeo@gmail.com
+        git_username: ${{ github.actor }}
+        newversion: ${{ github.event.inputs.newversion }}
+        publish_cmd: echo "Here is where I would publish"
+        push_version_commit: true # if your prePublishOnly step pushes git commits, you can omit this input or set it to false.
+        github_token: ${{ secrets.GITHUB_TOKEN }} # built in actions token.  Passed tp gh-release if in use.
+        npm_token: ${{ secrets.NPM_TOKEN }} # user set secret token generated at npm
