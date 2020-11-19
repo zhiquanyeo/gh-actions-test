@@ -39,7 +39,7 @@ jobs:
     - name: Get New Package Version
       id: get-package-version
       uses: martinbeentjes/npm-get-version-action@master
-    - run: echo "v${{ steps.get-package-version.outputs.current_version }}"
+    - run: echo "v${{ steps.get-package-version.outputs.current-version }}"
 #     - name: Generate GitHub Release
 #       uses: actions/create-release@v1
 #       id: create_release
