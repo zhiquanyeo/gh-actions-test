@@ -21,7 +21,7 @@ jobs:
     - name: Use Node.js 14
       uses: actions/setup-node@v2.1.1
       with:
-        node-version: "14.15"
+        node-version: "14.x"
         # setting a registry enables the NODE_AUTH_TOKEN env variable where we can set an npm token.  REQUIRED
         registry-url: 'https://registry.npmjs.org'
     - run: npm i
