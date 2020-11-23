@@ -33,7 +33,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install platformio
     - run: npm i
-    - run: np run build --if-present
+    - run: npm run build --if-present
     # - run: npm test --if-present
     - name: Version and Publish to npm
       uses: wpilibsuite/npm-bump@v2.0.2
