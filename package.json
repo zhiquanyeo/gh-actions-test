@@ -3,7 +3,9 @@
   "version": "1.1.5",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "build": "pio run -d firmware"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zhiquanyeo/gh-actions-test.git"
